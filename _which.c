@@ -8,10 +8,9 @@
 char *_which(char *s, char **env)
 {
 	char *tmp1 = NULL, *tmp2 = NULL, **pathh = NULL;
-	int size, x = 0;
+	int x = 0;
 	struct stat st;
 
-	size = _strlen(s);
 	if (!s)
 		return (NULL);
 	tmp1 = _getenv("PATH", env);
@@ -26,15 +25,17 @@ char *_which(char *s, char **env)
 				return (s);
 			}
 		}
-		tmp2 = malloc(_strlen(pathh[x]) + size + 1);
+		tmp2 = malloc(sizeof(char) * (_strlen(s) + _strlen(pathh[x]) + 2));
 		if (!tmp2)
 		{
 			free(pathh);
 			return (tmp2);
 		}
-		tmp2 = _strdup(pathh[x]);
+		tmp2[0] = '\0';
+		tmp2 = _strcat(tmp2, pathh[x]);
 		tmp2 = _strcat(tmp2, "/");
 		tmp2 = _strcat(tmp2, s);
+		printf("%s\n", tmp2);
 		if (stat(tmp2, &st) == 0)
 		{
 			free(pathh);

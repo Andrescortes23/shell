@@ -27,7 +27,7 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av,
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, PROMPT, 9);
 		/*free(tkline);*/
-		/*free(line);*/
+		free(line);
 	}
 	free(line);
 	free(tkline);
