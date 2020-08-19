@@ -8,35 +8,40 @@
 int excecute(char **s, char **env)
 {
 	pid_t child;
-	int status;
+	int status, pid;
 	struct stat st;
 
 	child = fork();
 
 	if (child == -1)
 	{
-		perror("Error:");
+		perror("Error creating the child process");
 		free(s);
-		return (1);
+		exit(-1);
 	}
 	if (child == 0)
 	{
-		/*s[0] = _which(s[0], env);*/
+		s[0] = _which(s[0], env);
 		if (stat(s[0], &st) == 0)
 		{
 			execve(s[0], s, env);
 		}
 		else
 		{
-			perror("Error");
-			exit(0);
+			perror("");
+			exit(2);
 		}
-
 
 		free(s);
 		kill(getpid(), 1);
 	}
-	wait(&status);
+	pid = wait(&status);
+	if (pid < 0)
+	{
+		perror("Error");
+		exit(-1);
+	}
+	wait(NULL);
 	free(s);
 	return (0);
 }

@@ -11,7 +11,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av,
 	 char **env)
 {
 
-	char *line, **tkline;
+	char *line;
+	char **tkline;
 
 	if (isatty(STDIN_FILENO))
 		write(STDOUT_FILENO, PROMPT, 9);
