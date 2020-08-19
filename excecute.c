@@ -23,8 +23,9 @@ int excecute(char **s, char **env)
 	{
 		/*s[0] = _which(s[0], env);*/
 		if (stat(s[0], &st) == 0)
+		{
 			execve(s[0], s, env);
-
+		}
 		else
 		{
 			perror("Error");

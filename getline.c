@@ -14,6 +14,8 @@ char *_getline()
 	chars = getline(&buffer, &num_bytes, stdin);
 	if (chars == EOF)
 	{
+		if (isatty(STDIN_FILENO))
+			write(STDIN_FILENO, "\n", 1);
 		free(buffer);
 		exit(0);
 	}
