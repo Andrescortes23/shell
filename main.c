@@ -15,10 +15,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av,
 
 	while (1)
 	{
-		tkline = NULL;
-		line = NULL;
-		if (isatty(STDIN_FILENO))
-			write(STDIN_FILENO, PROMPT, 2);
+		/*if (isatty(STDIN_FILENO))*/
+		write(STDIN_FILENO, PROMPT, 2);
 		signal(SIGINT, NewLine); /*make signal in case of find ^C*/
 		line = _getline(); /*do getline & return a buffer with recived*/
 		tkline = token(line); /*doing token from what input recibe*/
