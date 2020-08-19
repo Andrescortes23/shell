@@ -26,8 +26,8 @@ int main(__attribute__((unused))int ac, __attribute__((unused))char **av,
 			break;
 		else if (_strcmp(tkline[0], "exit") != 0)
 			excecute(tkline, env); /* excecute the command*/
-		//free(tkline);
-		//free(line);
+		/*free(tkline);*/
+		/*free(line);*/
 	}
 	free(line);
 	free(tkline);
